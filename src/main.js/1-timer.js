@@ -65,19 +65,21 @@ function convertMs(ms) {
 
   
 
-inputBtn.addEventListener(`click`, eve) => {
+inputBtn.addEventListener(`click`, eve => {
     const inputTime = setInterval ((){
         intervalTime = userSelectedDate - new Date();
         eve.preventDefault();
-        inputTime.disabled = true;
-
-
-        
+        inputTime.disabled = true;  
     if (intervalTime < 1) {
         inputBtn.disabled = true;
         inputTime.disabled = false;
         clearInterval(repeatTime);
         return;
-      }
-    }
-}
+      }  const timer = convertMs(timeInterval);
+
+      showTime[0].innerText = timer.days.toString().padStart(2, '0');
+      showTime[1].innerText = timer.hours.toString().padStart(2, '0');
+      showTime[2].innerText = timer.minutes.toString().padStart(2, '0');
+      showTime[3].innerText = timer.seconds.toString().padStart(2, '0');
+    }, 1000);
+  });
