@@ -1,43 +1,36 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-let userSelectedDate;
+let userDate;
 let intervalTime;
-const valueTime = flatpickr('#datetime-picker', options);
 const dataInputTime = document.querySelector('#datetime-picker');
-const inputBtn = document.querySelector(`button`);
-const newTime = document.querySelector(`.value`);
-
-
-const startBtn = document.querySelector ('.[data-start]')
-
+const startBtn = document.querySelector(`button`);
+const showTime= document.querySelector(`.value`);
 const options = {
-    enableTime: true,
-    time_24hr: true,
-    defaultDate: new Date(),
-    minuteIncrement: 1,
-    onClose(selectedDates) {
-  userSelectedDate = selectedDates[0];
-  userSelectedDate = intervalTime - options.defaultDate;
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    // console.log(selectedDates[0]);
+    userDate = selectedDates[0];
+    intervalTime= userSelectedDate - options.defaultDate;
 
-      console.log(selectedDates[0]);
-
-  
-
-      if (intervalTime< 1) {
-        iziToast.error({
-          color: 'red',
-          position: 'topRight',
-          message: `Please choose a date in the future`,
-        });
-      } else {
-        startBtn.disabled = false;
-        inputTime.disabled = true;
-      }
-    },
-  };
+    if (intervalTime < 1) {
+      iziToast.error({
+        color: 'red',
+        position: 'topRight',
+        message: `Please choose a date in the future`,
+      });
+    } else {
+      startBtn.disabled = false;
+      inputTime.disabled = true;
+    }
+  },
+};
 
 
 function convertMs(ms) {
@@ -64,22 +57,25 @@ function convertMs(ms) {
 //   console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 
   
+startBtn.disabled = true;
+startBtn.addEventListener('click', event => {
+  const repeatTime = setInterval(() => {
+    intervalTime = userDate - new Date();
+    event.preventDefault();
+    dataInputTime.disabled = true;
 
-inputBtn.addEventListener(`click`, eve => {
-    const inputTime = setInterval ((){
-        intervalTime = userSelectedDate - new Date();
-        eve.preventDefault();
-        inputTime.disabled = true;  
-    if (intervalTime < 1) {
-        inputBtn.disabled = true;
-        inputTime.disabled = false;
-        clearInterval(repeatTime);
-        return;
-      }  const timer = convertMs(timeInterval);
+    if (timeInterval < 1) {
+      startBtn.disabled = true;
+      dataInputTime .disabled = false;
+      clearInterval(repeatTime);
+      return;
+    };
+    console.log(showTime);
+    const timer = convertMs(timeInterval);
 
-      showTime[0].innerText = timer.days.toString().padStart(2, '0');
-      showTime[1].innerText = timer.hours.toString().padStart(2, '0');
-      showTime[2].innerText = timer.minutes.toString().padStart(2, '0');
-      showTime[3].innerText = timer.seconds.toString().padStart(2, '0');
-    }, 1000);
-  });
+    showTime[0].innerText = timer.days.toString().padStart(2, '0');
+    showTime[1].innerText = timer.hours.toString().padStart(2, '0');
+    showTime[2].innerText = timer.minutes.toString().padStart(2, '0');
+    showTime[3].innerText = timer.seconds.toString().padStart(2, '0');
+  }, 1000);
+});
