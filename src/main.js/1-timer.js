@@ -7,10 +7,6 @@ import 'izitoast/dist/css/iziToast.min.css';
 let userDate;
 let timeInterval;
 
-
-
-
-
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -21,7 +17,7 @@ const options = {
     userDate = selectedDates[0];
     timeInterval = userDate - options.defaultDate;
 
-    if (timeInterval < 1) {
+    if (timeInterval < 0) {
       iziToast.error({
         color: 'red',
         position: 'topRight',
@@ -75,7 +71,7 @@ clickBtn.addEventListener('click', event => {
     event.preventDefault();
     inputTime.disabled = true;
 
-    if (timeInterval < 1) {
+    if (timeInterval < 0) {
       clickBtn.disabled = true;
       inputTime.disabled = false;
       clearInterval(repeatTime);

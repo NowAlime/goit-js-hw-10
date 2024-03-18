@@ -1,0 +1,33 @@
+button {
+    background: #4e75ff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    width: 360px;
+    height: 40px;
+    font-weight: 500;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  button:hover {
+    background: #6c8cff;
+  }
+
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+
+  .go-home{
+    display: flex;
+    align-items: center;
+    color:#4e75ff;
+    margin-top: 18px;
+  }
