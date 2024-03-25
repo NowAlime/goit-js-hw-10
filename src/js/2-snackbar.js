@@ -13,9 +13,9 @@ formDelay.addEventListener (`submit`, event =>{
     const valueData = event.currentTarget.elements.state.value;
     const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (valueData === 'Fulfilled') {
+      if (valueData === 'fulfilled') {
         resolve();
-      } else {
+      } else if (valueData === 'rejected'){
         reject();
       }
     }, valueTime);
