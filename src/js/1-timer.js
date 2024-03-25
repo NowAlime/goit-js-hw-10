@@ -76,7 +76,7 @@ clickBtn.addEventListener('click', event => {
     event.preventDefault();
     inputTime.disabled = true;
 
-    if (timeInterval < 0) {
+    if (timeInterval < 1) {
       clickBtn.disabled = true;
       inputTime.disabled = false;
       clearInterval(repeatTime);
