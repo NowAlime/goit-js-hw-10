@@ -56,12 +56,6 @@ function convertMs(ms) {
 }
 
 
-
-
-
-
-
-
 const calendar = flatpickr('#datetime-picker', options);
 const inputTime = document.querySelector('#datetime-picker');
 const clickBtn = document.querySelector('button');
