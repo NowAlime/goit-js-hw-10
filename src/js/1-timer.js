@@ -22,10 +22,15 @@ const options = {
         color: 'red',
         position: 'topRight',
         message: `Please choose a date in the future`,
-      });
+      });   clickBtn.disabled = true;
     } else {
       clickBtn.disabled = false;
-      inputTime.disabled = true;
+      iziToast.success({
+        title: 'Success',
+        message: 'Correct date',
+        position: 'topRight',
+      });
+   
     }
   },
 };
