@@ -17,7 +17,7 @@ const options = {
     userDate = selectedDates[0];
     timeInterval = userDate - options.defaultDate;
 
-    if (timeInterval < 0) {
+    if (timeInterval < 1) {
       iziToast.error({
         color: 'red',
         position: 'topRight',
